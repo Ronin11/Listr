@@ -1,0 +1,15 @@
+{
+  "name": "RoninWoodworks",
+  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "main": "index.html",
+  "license": "ISC",
+  "homepage": "https://github.com/Ronin11/RoninWoodworks",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
