@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Podcastio">
+<head>
+<!-- Libraries -->
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/firebase/firebase.js"></script>
+<script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+
+<!-- Application -->
+<script src="app/app.js"></script>
+<script src="app/home_page/HomePageController.js"></script>
+<script src="app/login_page/LoginPageController.js"></script>
+<script src="app/player_page/PlayerPageController.js"></script>
+
+</head>
+<body>
+  <ng-view></ng-view>
+  <script>
+  // Initialize the Firebase SDK
+  var config = {
+    apiKey: "AIzaSyDjOwqslojjkjrR4vH3EX0cdGrPxHahMNs",
+    authDomain: "project-7481664624118991650.firebaseapp.com",
+    databaseURL: "https://project-7481664624118991650.firebaseio.com",
+    storageBucket: "project-7481664624118991650.appspot.com",
+  };
+  firebase.initializeApp(config);
+</script>
+</body>
+</html>
