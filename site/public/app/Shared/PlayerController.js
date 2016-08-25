@@ -7,7 +7,8 @@ angular.module('Podcastio').controller('PlayerCtrl', function($http, $scope, $fi
     index = 0;
     console.log(audioElement)
 
-    
+    PlayerCtrl.progressValue = .5;
+
     audioElement.onloadedmetadata = function(event){
       duration = audioElement.duration
       hours = 0;
@@ -32,6 +33,7 @@ angular.module('Podcastio').controller('PlayerCtrl', function($http, $scope, $fi
     }
 
     audioElement.onprogress = function(event){
+
       currentTime = audioElement.currentTime
       hours = 0;
       minutes = 0;
@@ -70,13 +72,11 @@ angular.module('Podcastio').controller('PlayerCtrl', function($http, $scope, $fi
     PlayerCtrl.skipNext = function(){
       index+=1
       audioElement.src = paths[index];
-      audioElement.play();
     }
 
     PlayerCtrl.skipPrev = function(){
       index-=1
       audioElement.src = paths[index];
-      audioElement.play();
     }
 
 });

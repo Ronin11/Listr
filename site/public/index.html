@@ -9,10 +9,8 @@
 <script src="bower_components/angular-aria/angular-aria.js"></script>
 <script src="bower_components/angular-material/angular-material.min.js"></script>
 <script src="bower_components/firebase/firebase.js"></script>
-<script src="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
 
 <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css"></script>
-<link rel="stylesheet" type="text/css" href="./bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- css -->
@@ -22,8 +20,8 @@
 <script src="app/app.js"></script>
 <script src="app/home_page/HomePageController.js"></script>
 <script src="app/login_page/LoginPageController.js"></script>
-<script src="app/player_page/PlayerPageController.js"></script>
 <script src="app/upload_page/UploadPageController.js"></script>
+<script src="app/Shared/PlayerController.js"></script>
 <script src="app/Shared/UserService.js"></script>
 <script src="app/Shared/PlayerService.js"></script>
 
@@ -32,8 +30,7 @@
 <body>
   <ng-view></ng-view>
   <div class = "player" layout="column" ng-controller="PlayerCtrl as ctrl">
-      <div class="progress-bar" layout="row">
-      </div>
+      <md-progress-linear md-mode="determinate" value="{{ctrl.progressValue}}"></md-progress-linear>
       <div class="player-wrapper" layout="row">
       <div class="player-left-wrapper" layout="column" flex="33">
       </div>

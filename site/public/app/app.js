@@ -1,7 +1,6 @@
 app = angular.module('Podcastio', [
   'ngMaterial',
   'ngRoute',
-  'lfNgMdFileInput', 
   'firebase'
 ]);
 
