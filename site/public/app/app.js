@@ -1,4 +1,9 @@
-app = angular.module('Podcastio', ['ngRoute', "firebase"]);
+app = angular.module('Podcastio', [
+  'ngMaterial',
+  'ngRoute',
+  'lfNgMdFileInput', 
+  'firebase'
+]);
 
 app.config(['$routeProvider', function config($routeProvider){
 
@@ -14,6 +19,10 @@ app.config(['$routeProvider', function config($routeProvider){
         when('/player', {
           templateUrl: 'app/player_page/PlayerPage.html',
           controller: 'PlayerPageCtrl'
+        }).
+        when('/upload', {
+          templateUrl: 'app/upload_page/UploadPage.html',
+          controller: 'UploadPageCtrl'
         }).
         otherwise('/home');
 }]);
