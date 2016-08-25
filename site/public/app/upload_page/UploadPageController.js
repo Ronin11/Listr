@@ -9,7 +9,6 @@ angular
 
     // Get a reference to the storage service, which is used to create references in your storage bucket
     var ref = firebase.storage().ref();
-    var temp = ref.child("file.mp3");
 
 
     $scope.$watch('files.length',function(newVal,oldVal){
@@ -31,14 +30,15 @@ angular
         // },function(err){
         //     // do sometingh 
         // });
-
         obj = $scope.files[0]
-        obj = new File(["PENIS"], "FuckMeInTheAssCuzILoveJesus.txt");
-        console.log(obj)
-        
-        temp.put(obj).then(function(snapshot) {
-            console.log('Uploaded a blob or file!');
-        });
+        fileRef = ref.child(obj['lfFileName'])
+
+        uploadTask = fileRef.put(obj['lfFile']);
+        uploadTask.on("state_changed", function progress(snapshot){
+            console.log(snapshot.bytesTransferred);
+            console.log(snapshot.totalBytes);
+            console.log(snapshot.bytesTransferred/snapshot.totalBytes) // progress of upload
+        })
 
 
         // var uploadTask = ref.child('test/test.mp3').put($scope.files);
