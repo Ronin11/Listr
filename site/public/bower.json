@@ -1,0 +1,33 @@
+{
+  "name": "podcastio",
+  "homepage": "https://github.com/Ronin11/Podcastio",
+  "authors": [
+    "Derek Hunter <derek.hunter@aggiemail.usu.edu>"
+  ],
+  "description": "get rich and fuck bitches",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "this",
+    "d"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-audio": "^1.7.2",
+    "angular-material": "^1.0.9",
+    "angular-route": "^1.5.7",
+    "angular": "^1.5.7",
+    "angularfire": "^2.0.1",
+    "firebase": "^3.0.5",
+    "octicons": "^4.3.0",
+    "material-design-icons": "^2.2.3"
+  }
+}
