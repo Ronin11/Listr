@@ -1,0 +1,97 @@
+body {
+    height:100%;
+    background-color:#fafafa;
+}
+
+.player-button{
+    width:64px;
+    height:64px;
+    font-size:35px;
+    color:#fff;
+    text-align:center;
+}
+
+.progress-bar{
+    height:5px;
+    width:100%;
+    background-color:#673AB7;
+}
+.player{
+    width:100%;
+    box-shadow: 0px -2px 5px rgba(0,0,0,0.10);
+}
+
+.player-wrapper{
+    height:100%;
+}
+
+.player-left-wrapper{
+    height:100%;
+}
+
+.player-center-wrapper{
+    height:100%;
+}
+
+.player-right-wrapper{
+    height:100%;
+}
+
+
+.material-icons.md-48 {
+    width:48px;
+    border-radius:100%;
+    font-size: 48px;
+    color:white;
+    background-color:#673AB7;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+}
+
+.player-controls{
+    height:100%;
+}
+
+.player{
+    color:#673AB7;
+    background-color:#FFF;
+    height:64px;
+    width: 100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    line-height: 64px;
+}
+
+.wrapper {
+    min-height:100%;
+    position:relative;
+}
+
+.content{
+    margin-top: 64px;
+    width:100%;
+    min-height:80%;
+    background-color:#fafafa;
+}
+
+.sidebar{
+    margin-top: 64px;
+    background-color:#fff;
+}
+
+.right-panel{
+    height:100%;
+    padding:0px;
+}
+
+.header{
+    height: 64px;
+    line-height: 64px;
+    position: fixed;
+    top:0px;
+    width:100%;
+    height: 64px;
+    color:#fff;
+    background-color:#673AB7;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.26);
+}
