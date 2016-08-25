@@ -5,6 +5,12 @@ logs
 *.log
 npm-debug.log*
 
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
+
 # Runtime data
 pids
 *.pid
