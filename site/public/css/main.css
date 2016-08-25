@@ -12,8 +12,7 @@ body {
 }
 
 .progress-bar{
-    height:5px;
-    width:100%;
+    color:red;
     background-color:#673AB7;
 }
 .player{

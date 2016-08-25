@@ -30,7 +30,7 @@
 <body>
   <ng-view></ng-view>
   <div class = "player" layout="column" ng-controller="PlayerCtrl as ctrl">
-      <md-progress-linear md-mode="determinate" value="{{ctrl.progressValue}}"></md-progress-linear>
+      <md-progress-linear class="progress-bar" md-mode="determinate" value="{{ctrl.progressValue}}"></md-progress-linear>
       <div class="player-wrapper" layout="row">
       <div class="player-left-wrapper" layout="column" flex="33">
       </div>
