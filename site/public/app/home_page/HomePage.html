@@ -1,10 +1,22 @@
 
+<div class="content">
 
-<a href="#/login">Login</a>
-<a href="#/player">Listen</a>
-<a href="#/upload">Upload</a>
-<div ng-repeat="(key, value) in episodeList">
-    <div style="background-color:red; margin:2px;" ng-click = "changeSong(value['path'])"> 
-        {{value["name"]}}
+    <a href="#/login">Login</a>
+    <a href="#/player">Listen</a>
+    <a href="#/upload">Upload</a>
+    <!-- <div ng-repeat="(key, value) in episodeList">
+        <div style="background-color:red; margin:2px;" ng-click = "changeSong(value['path'])"> 
+            {{value["name"]}}
+        </div>
+    </div> -->
+
+    <button ng-click="showSelected()">Select</button>
+    <h1>Episode Information</h1>
+    {{episodeData.title}}
+    <div ng-repeat="episode in episodeData.episodes">
+        <div class="show-item-list" ng-click = "changeSong(episode.enclosure._url)">
+        {{episode.title}}
     </div>
+
+
 </div>
