@@ -4,7 +4,7 @@ app = angular.module('Podcastio', [
   'firebase'
 ]);
 
-app.config(['$routeProvider', '$mdThemingProvider', function($routeProvider, $mdThemingProvider, $httpProvider){
+app.config(['$routeProvider', '$mdThemingProvider', '$httpProvider', function($routeProvider, $mdThemingProvider, $httpProvider){
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
   
