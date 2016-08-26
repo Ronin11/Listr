@@ -1,28 +1,33 @@
 angular
 .module('Podcastio')
-.controller('UploadPageCtrl', function($scope, $firebaseArray) {
-    var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com/messages");
-    // create a synchronized array
-    $scope.files = $firebaseArray(ref);
+.controller('UploadPageCtrl', function($scope, $firebaseAuth, $firebaseArray) {
 
+    var ref = firebase.storage().ref();
+    var database = firebase.database();
 
     $scope.$watch('files.length',function(newVal,oldVal){
         console.log($scope.files);
     });
 
     $scope.uploadFiles = function(){
-        var formData = new FormData();
-        console.log($scope.files)
-        angular.forEach($scope.files,function(obj){
-            formData.append('files[]', obj.lfFile);
+        obj = $scope.files[0]
+        fileRef = ref.child(obj['lfFileName']);
+
+
+        uploadTask = fileRef.put(obj['lfFile'])
+
+        uploadTask.then(function(snapshot) {
+            collection = database.ref('tal/episodes').push({
+                name: obj['lfFileName'],
+                path : snapshot.downloadURL
+            });
+            console.log('Uploaded a blob or file!');
         });
-        $http.post('./upload', formData, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
-        }).then(function(result){
-            // do sometingh         
-        },function(err){
-            // do sometingh 
-        });
+
+        uploadTask.on("state_changed", function progress(snapshot){
+            console.log(Math.round(snapshot.bytesTransferred/snapshot.totalBytes*100) + "%") // progress of upload
+        })
+
+
     };
 });

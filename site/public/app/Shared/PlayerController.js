@@ -1,11 +1,11 @@
 angular.module('Podcastio').controller('PlayerCtrl', function($http, $scope, $firebaseAuth, $document, PlayerService) {
     PlayerCtrl = this;
-    PlayerCtrl.playing = false;
     var audioElement = $document[0].createElement('audio');
-    paths = ['http://feed.thisamericanlife.org/~r/talpodcast/~5/l-mIKkKzpQ0/594.mp3', "http://feed.thisamericanlife.org/~r/talpodcast/~5/KtNRssO7VSc/447.mp3"]
-    audioElement.src = paths[0]
+    
+    PlayerCtrl.playing = false;
     index = 0;
-    console.log(audioElement)
+
+    audioElement.src = PlayerService.getPath();
 
     PlayerCtrl.progressValue = 50;
 
@@ -60,6 +60,7 @@ angular.module('Podcastio').controller('PlayerCtrl', function($http, $scope, $fi
 
 
     PlayerCtrl.togglePlay = function(){
+      audioElement.src = PlayerService.getPath();
       if(!PlayerCtrl.playing){
           audioElement.play();
       }else{
@@ -68,16 +69,16 @@ angular.module('Podcastio').controller('PlayerCtrl', function($http, $scope, $fi
       PlayerCtrl.playing = !PlayerCtrl.playing;
     }
 
+    // PlayerCtrl.skipNext = function(){
+    //   index+=1
+    //   audioElement.src = paths[index];
+    //   audioElement.play();
+    // }
 
-
-    PlayerCtrl.skipNext = function(){
-      index+=1
-      audioElement.src = paths[index];
-    }
-
-    PlayerCtrl.skipPrev = function(){
-      index-=1
-      audioElement.src = paths[index];
-    }
+    // PlayerCtrl.skipPrev = function(){
+    //   index-=1
+    //   audioElement.src = paths[index];
+    //   audioElement.play();
+    // }
 
 });
