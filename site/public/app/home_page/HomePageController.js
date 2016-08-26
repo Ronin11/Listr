@@ -1,4 +1,4 @@
-angular.module('Podcastio').controller('HomePageCtrl', function($scope, $firebaseAuth, PlayerService) {
+angular.module('Podcastio').controller('HomePageCtrl', function($scope, $firebaseAuth, PlayerService, EpisodeService) {
 
     var database = firebase.database();
     var episodes = firebase.database().ref('tal/episodes/');
@@ -12,5 +12,7 @@ angular.module('Podcastio').controller('HomePageCtrl', function($scope, $firebas
     episodes.on('value', function(snapshot) {
         $scope.episodeList = snapshot.val();   
     });
+
+    EpisodeService.getEpisodes('http://sawbones.libsyn.com/rss');
 
 });
