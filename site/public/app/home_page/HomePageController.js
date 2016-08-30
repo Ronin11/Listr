@@ -9,6 +9,7 @@ angular.module('Podcastio').controller('HomePageCtrl', function($scope, $firebas
     $scope.showSelected = function(){
             // http://feed.thisamericanlife.org/talpodcast
             // EpisodeService.getEpisodes('http://sawbones.libsyn.com/rss', function(data){
+            console.log("Selected");
             EpisodeService.getEpisodes('http://bunkerbuddies.libsyn.com/rss', function(data){
             $scope.episodeData = data;
             console.log($scope.episodeData.episodes);

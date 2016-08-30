@@ -6,6 +6,7 @@ angular.module('Podcastio').factory('EpisodeService', function($http, x2js){
             method: 'GET',
             url: url
         }).then(function successCallback(response) {
+            console.log(response);
             data = {}
             data.episodes = []
             feed = response.data.rss.channel;
