@@ -10,6 +10,9 @@
 <script src="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
 <script src="bower_components/firebase/firebase.js"></script>
 <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+<script src="bower_components/x2js/xml2json.min.js"></script>
+<script src="bower_components/angular-xml/angular-xml.min.js"></script>
+
 
 <link rel="stylesheet" href="./bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css">
 <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css"></script>
@@ -31,7 +34,11 @@
 
 </head>
 <body>
-  <ng-view></ng-view>
+    <div class = "header" laytou="row">
+        Podcastio
+    </div>
+        <ng-view></ng-view>
+  
   <div class = "player" layout="column" ng-controller="PlayerCtrl as ctrl">
       <md-progress-linear class="progress-bar" md-mode="determinate" value="{{ctrl.progressValue}}"></md-progress-linear>
       <div class="player-wrapper" layout="row">

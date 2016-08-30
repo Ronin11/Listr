@@ -61,6 +61,7 @@ angular.module('Podcastio').controller('PlayerCtrl', function($http, $scope, $fi
 
     PlayerCtrl.togglePlay = function(){
       audioElement.src = PlayerService.getPath();
+      console.log(PlayerService.getPath())
       if(!PlayerCtrl.playing){
           audioElement.play();
       }else{

@@ -29,6 +29,7 @@
     "firebase": "^3.0.5",
     "octicons": "^4.3.0",
     "material-design-icons": "^2.2.3",
-    "lf-ng-md-file-input": "^1.4.8"
+    "lf-ng-md-file-input": "^1.4.8",
+    "angular-xml": "^2.2.1"
   }
 }
