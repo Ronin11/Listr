@@ -17,29 +17,35 @@ angular
 
     function getUser(id, callback){
         user = $firebaseObject(database.ref('users/' + id));
-        //UserService.user = user
-        // user.$bindTo(UserService, "user").then(function(){
-        //     console.log(UserService.user);
-        // })
-        UserService.user = user;
-        // THIS IS FOR TESTING AND DEV ONLY!!!
-        if(UserService.user != undefined){
-            callback(UserService.user);
-        }else{
-            createUser(id, "USERNAME", callback);
-        }
+        user.$loaded().then(function(user){
+            UserService.user = user
+
+            // user.$bindTo(UserService, "user").then(function(){
+            //     console.log(UserService.user);
+            // })
+            // UserService.user = user.$value;
+            // THIS IS FOR TESTING AND DEV ONLY!!!
+            
+            if(UserService.user != undefined){
+                callback(UserService.user);
+            }else{
+                createUser(id, "USERNAME", callback);
+            }
+        });
     }
 
 
     function createUser(id, username, callback){
         user = $firebaseObject(database.ref('users/' + id));
-        user.$value = {
-            uid: id,
-            name: username
-        }
-        UserService.user = user.$value;
-        //UserService.user = user;
-        callback(UserService.user);
+        user.$loaded().then(function(user){
+            user.$value = {
+                uid: id,
+                name: username
+            }
+            // UserService.user = user.$value;
+            UserService.user = user;
+            callback(UserService.user);
+        });
     }
     
     UserService.isLoggedIn = function(){
@@ -57,6 +63,10 @@ angular
         else{
             loginPrompt(callback);
         }
+    }
+
+    UserService.getUserValue = function(){
+       return UserService.user.$value;
     }
 
     UserService.createUser = function(callback, username){

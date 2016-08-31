@@ -12,19 +12,16 @@ angular
             description: $scope.description
         }
         UserService.getUser(function(user){
-            console.log(user)
-            // temp = user;
-            // if(temp.shows != undefined){
-            //     temp.shows.push(show);
-            // }else{
-            //     temp.shows = [show];
-            // }
-            // user.$value = temp;
-            // user.$save().then(function() {
-            //     alert('Profile saved!');
-            // }).catch(function(error) {
-            //     alert('Error!');
-            // });
+            if(user.shows != undefined){
+                user.shows.push(show);
+            }else{
+                user.shows = [show];
+            }
+            user.$save().then(function() {
+                console.log('Profile saved!');
+            }).catch(function(error) {
+                console.log('Error!');
+            });
         });
     }
 
