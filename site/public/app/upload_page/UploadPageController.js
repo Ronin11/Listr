@@ -6,7 +6,7 @@ angular
     var database = firebase.database();
 
     $scope.$watch('files.length',function(newVal,oldVal){
-        console.log($scope.files);
+        //console.log($scope.files);
     });
 
     $scope.uploadFiles = function(){

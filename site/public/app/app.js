@@ -24,10 +24,6 @@ app.config(['$routeProvider', '$mdThemingProvider', '$httpProvider',
       templateUrl: 'app/home_page/HomePage.html',
       controller: 'HomePageCtrl'
     }).
-    when('/login', {
-      templateUrl: 'app/login_page/LoginPage.html',
-      controller: 'LoginPageCtrl'
-    }).
     when('/player', {
       templateUrl: 'app/player_page/PlayerPage.html',
       controller: 'PlayerPageCtrl'
@@ -35,6 +31,10 @@ app.config(['$routeProvider', '$mdThemingProvider', '$httpProvider',
     when('/upload', {
       templateUrl: 'app/upload_page/UploadPage.html',
       controller: 'UploadPageCtrl'
+    }).
+    when('/newShow', {
+      templateUrl: 'app/new_show_page/NewShowPage.html',
+      controller: 'NewShowPageCtrl'
     }).
     otherwise('/home');
 }]);

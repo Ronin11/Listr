@@ -1,4 +1,6 @@
-angular.module('Podcastio').controller('HomePageCtrl', function($scope, $firebaseAuth, PlayerService, EpisodeService) {
+angular
+    .module('Podcastio')
+    .controller('HomePageCtrl', function($scope, $firebaseAuth, PlayerService, EpisodeService) {
 
     HomeController = this;
 
