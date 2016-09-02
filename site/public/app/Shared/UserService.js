@@ -20,10 +20,6 @@ angular
         user.$loaded().then(function(user){
             UserService.user = user
 
-            // user.$bindTo(UserService, "user").then(function(){
-            //     console.log(UserService.user);
-            // })
-            // UserService.user = user.$value;
             // THIS IS FOR TESTING AND DEV ONLY!!!
             
             if(UserService.user != undefined){
@@ -42,7 +38,6 @@ angular
                 uid: id,
                 name: username
             }
-            // UserService.user = user.$value;
             UserService.user = user;
             callback(UserService.user);
         });
@@ -58,6 +53,7 @@ angular
 
     UserService.getUser = function(callback){
         if(UserService.user){
+            console.log(UserService.user);
             callback(UserService.user);
         }
         else{
