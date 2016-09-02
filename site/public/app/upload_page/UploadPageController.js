@@ -86,7 +86,16 @@
 
 angular
     .module('Podcastio')
-    .controller('UploadPageCtrl', function($timeout, $q, $log) {
+    .controller('UploadPageCtrl', function($timeout, $q, $log, $window,
+                          ShowService, UserService) {
+
+    UserService.getUser(function(user){
+      ShowService.getShows(user, function(shows){
+        self.states = shows.map(x => x.title);
+        console.log(self.states);
+      });
+    });
+
     var self = this;
     self.simulateQuery = false;
     self.isDisabled    = false;
@@ -95,10 +104,11 @@ angular
     self.querySearch   = querySearch;
     self.selectedItemChange = selectedItemChange;
     self.searchTextChange   = searchTextChange;
-    self.newState = newState;
-    function newState(state) {
-      alert("Sorry! You'll need to create a Constitution for " + state + " first!");
-    }
+    //self.newState = newState;
+    // function Show(show) {
+    //   $window.location.href = '/index.html';
+    //   // alert("Sorry! You'll need to create a Constitution for " + state + " first!");
+    // }
     // ******************************
     // Internal methods
     // ******************************
@@ -145,9 +155,10 @@ angular
      * Create filter function for a query string
      */
     function createFilterFor(query) {
+      console.log(query);
       var lowercaseQuery = angular.lowercase(query);
       return function filterFn(state) {
-        return (state.value.indexOf(lowercaseQuery) === 0);
+        return (state.indexOf(lowercaseQuery) === 0);
       };
     }
   });
