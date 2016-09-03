@@ -11,18 +11,7 @@ angular
             imgSrc: "",
             description: $scope.description
         }
-        UserService.getUser(function(user){
-            if(user.shows != undefined){
-                user.shows.push(show);
-            }else{
-                user.shows = [show];
-            }
-            user.$save().then(function() {
-                console.log('Profile saved!');
-            }).catch(function(error) {
-                console.log('Error!');
-            });
-        });
+        UserService.addShow(show);
     }
 
 });

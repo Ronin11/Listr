@@ -1,9 +1,11 @@
 angular
     .module('Podcastio')
-    .factory('UserService', function($firebaseAuth, $firebaseObject){
+    .factory('UserService', function(
+        $firebaseAuth, $firebaseArray, $firebaseObject){
     var UserService = {};
 
     var database = firebase.database();
+    var ref = firebase.storage().ref();
 
     function loginPrompt(callback){
         var auth = $firebaseAuth();
@@ -67,6 +69,58 @@ angular
 
     UserService.createUser = function(callback, username){
         createUser(callback, username);
+    }
+
+    UserService.addShow = function(show){
+        UserService.getUser(function(user){
+            if(user.shows != undefined){
+                user.shows.push(show);
+            }else{
+                user.shows = [show];
+            }
+            user.$save().then(function() {
+                console.log('New Show Added!');
+            }).catch(function(error) {
+                console.log('Error!');
+            });
+        });
+    }
+
+    UserService.addEpisode = function(show, title, description, file){
+        fileRef = ref.child(file['lfFileName']);
+        uploadTask = fileRef.put(file['lfFile'])
+
+        uploadTask.then(function(snapshot){
+            
+            user = $firebaseObject(database.ref('users/' + UserService.user.$id));
+            user.$loaded().then(function(user){
+
+              episode = {                 
+                title: title,
+                description: description,
+                path : snapshot.downloadURL
+              }
+
+              for(i = 0; i < user.shows.length; i++){
+                if(user.shows[i].title == show){
+                  if(user.shows.episodes == undefined){
+                    user.shows[i].episodes = [episode];
+                  } else {
+                    user.shows[i].push(episode);
+                  }
+                }
+              };
+              user.$save().then(function() {
+                  console.log('Episode Added!');
+              }).catch(function(error) {
+                  console.log('Error!');
+              });
+          });
+    });
+
+        uploadTask.on("state_changed", function progress(snapshot){
+            console.log(Math.round(snapshot.bytesTransferred/snapshot.totalBytes*100) + "%") // progress of upload
+        });
     }
     
     return UserService;

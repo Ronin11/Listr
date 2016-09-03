@@ -1,8 +1,7 @@
 angular
     .module('Podcastio')
     .controller('NewEpisodePageCtrl', function(
-      $scope, $log, $window, 
-      $firebaseAuth, $firebaseArray, $firebaseObject,
+      $scope, $log, $window,
       ShowService, UserService) {
 
     var ref = firebase.storage().ref();
@@ -16,50 +15,8 @@ angular
       });
     });
 
-    $scope.$watch('files.length',function(newVal,oldVal){
-        console.log($scope.files);
-    });
-
-    $scope.doTheThing = function(snapshot){
-
-            user = $firebaseObject(database.ref('users/' + $scope.user.$id));
-            user.$loaded().then(function(user){
-
-              episode = {                 
-                title: $scope.title,
-                description: $scope.description,
-                path : snapshot.downloadURL
-              }
-
-              for(i = 0; i < user.shows.length; i++){
-                if(user.shows[i].title == $scope.selectedItem){
-                  if(user.shows.episodes == undefined){
-                    user.shows[i].episodes = [episode];
-                  } else {
-                    user.shows[i].push(episode);
-                  }
-                }
-              };
-              user.$save().then(function() {
-                  console.log('Episode Added!');
-              }).catch(function(error) {
-                  console.log('Error!');
-              });
-          });
-    }
-
-    $scope.uploadFiles = function(){
-        obj = $scope.files[0]
-        fileRef = ref.child(obj['lfFileName']);
-
-
-        uploadTask = fileRef.put(obj['lfFile'])
-
-        uploadTask.then($scope.doTheThing);
-
-        uploadTask.on("state_changed", function progress(snapshot){
-            console.log(Math.round(snapshot.bytesTransferred/snapshot.totalBytes*100) + "%") // progress of upload
-        });
+    $scope.submit = function(){
+      UserService.addEpisode($scope.selectedItem, $scope.title, $scope.description, $scope.files[0])
     };
 
     //var self = this;

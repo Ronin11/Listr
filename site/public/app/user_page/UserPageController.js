@@ -1,7 +1,8 @@
 angular
     .module('Podcastio')
-    .controller('UserPageCtrl', function($scope, $firebaseAuth, $firebaseObject,
-                            UserService, PlayerService) {
+    .controller('UserPageCtrl', function(
+        $scope,
+        UserService, PlayerService) {
 
     UserService.getUser(function(user){
       $scope.user = user;
