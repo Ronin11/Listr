@@ -27,6 +27,8 @@ angular.module('Podcastio').factory('EpisodeService', function($http, x2js){
         // or server returns response with an error status.
         });
     }
+
+    
     
     return EpisodeService;
 

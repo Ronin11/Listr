@@ -28,9 +28,9 @@ app.config(['$routeProvider', '$mdThemingProvider', '$httpProvider',
       templateUrl: 'app/player_page/PlayerPage.html',
       controller: 'PlayerPageCtrl'
     }).
-    when('/upload', {
-      templateUrl: 'app/upload_page/UploadPage.html',
-      controller: 'UploadPageCtrl'
+    when('/newEpisode', {
+      templateUrl: 'app/new_episode_page/NewEpisodePage.html',
+      controller: 'NewEpisodePageController'
     }).
     when('/newShow', {
       templateUrl: 'app/new_show_page/NewShowPage.html',
