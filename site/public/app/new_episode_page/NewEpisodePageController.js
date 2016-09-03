@@ -1,6 +1,6 @@
 angular
     .module('Podcastio')
-    .controller('NewEpisodePageController', function(
+    .controller('NewEpisodePageCtrl', function(
       $scope, $log, $window, 
       $firebaseAuth, $firebaseArray, $firebaseObject,
       ShowService, UserService) {

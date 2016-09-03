@@ -30,11 +30,15 @@ app.config(['$routeProvider', '$mdThemingProvider', '$httpProvider',
     }).
     when('/newEpisode', {
       templateUrl: 'app/new_episode_page/NewEpisodePage.html',
-      controller: 'NewEpisodePageController'
+      controller: 'NewEpisodePageCtrl'
     }).
     when('/newShow', {
       templateUrl: 'app/new_show_page/NewShowPage.html',
       controller: 'NewShowPageCtrl'
+    }).
+    when('/user', {
+      templateUrl: 'app/user_page/UserPage.html',
+      controller: 'UserPageCtrl'
     }).
     otherwise('/home');
 }]);

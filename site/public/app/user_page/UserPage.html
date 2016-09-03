@@ -1,0 +1,12 @@
+<div class="content">
+    User page
+
+    <div ng-repeat="show in user.shows">
+        <h3>{{ show.title }}</h3>
+        <div ng-repeat="episode in show.episodes">
+            <md-list-item class="secondary-button-padding" ng-click="playEpisode(episode)">
+                <p> {{ episode.title }}</p>
+            </md-list-item>
+        </div>
+    </div> 
+</div>
