@@ -65,7 +65,8 @@ body {
 }
 
 .content{
-    margin-top: 64px;
+    /*margin-top: 64px;*/
+    margin-top: 80px;
     width:100%;
     min-height:80%;
     background-color:#fafafa;

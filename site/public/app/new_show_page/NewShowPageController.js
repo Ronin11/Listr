@@ -1,17 +1,10 @@
 angular
     .module('Podcastio')
-    .controller('NewShowPageCtrl', function($scope, $firebaseAuth, $firebaseObject,
+    .controller('NewShowPageCtrl', function($scope,
                             UserService) {
 
-    var database = firebase.database();
-
     $scope.createShow = function(){
-        show = {
-            title: $scope.title,
-            imgSrc: "",
-            description: $scope.description
-        }
-        UserService.addShow(show);
+        UserService.addShow($scope.title, $scope.description, $scope.files[0]);
     }
 
 });

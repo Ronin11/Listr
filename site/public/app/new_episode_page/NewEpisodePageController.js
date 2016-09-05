@@ -4,9 +4,6 @@ angular
       $scope, $log, $window,
       ShowService, UserService) {
 
-    var ref = firebase.storage().ref();
-    var database = firebase.database();
-
     UserService.getUser(function(user){
       $scope.user = user;
       ShowService.getShows(user, function(shows){

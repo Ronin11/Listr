@@ -71,18 +71,35 @@ angular
         createUser(callback, username);
     }
 
-    UserService.addShow = function(show){
-        UserService.getUser(function(user){
-            if(user.shows != undefined){
-                user.shows.push(show);
-            }else{
-                user.shows = [show];
-            }
-            user.$save().then(function() {
-                console.log('New Show Added!');
-            }).catch(function(error) {
-                console.log('Error!');
+    UserService.addShow = function(title, description, file){
+            fileRef = ref.child(file['lfFileName']);
+            uploadTask = fileRef.put(file['lfFile'])
+
+            uploadTask.then(function(snapshot){
+                
+                user = $firebaseObject(database.ref('users/' + UserService.user.$id));
+                user.$loaded().then(function(user){
+
+                show = {
+                    title: title,
+                    description: description,
+                    imageSrc: snapshot.downloadURL
+                }
+
+                if(user.shows != undefined){
+                    user.shows.push(show);
+                }else{
+                    user.shows = [show];
+                }
+                user.$save().then(function() {
+                    console.log('Show Added!');
+                }).catch(function(error) {
+                    console.log('Error!');
+                });
             });
+        });
+        uploadTask.on("state_changed", function progress(snapshot){
+            console.log(Math.round(snapshot.bytesTransferred/snapshot.totalBytes*100) + "%") // progress of upload
         });
     }
 
