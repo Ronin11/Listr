@@ -1,41 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="Podcastio">
 <head>
-<!-- Libraries -->
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-route/angular-route.min.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-aria/angular-aria.js"></script>
-<script src="bower_components/angular-material/angular-material.min.js"></script>
-<script src="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
-<script src="bower_components/firebase/firebase.js"></script>
-<script src="bower_components/angularfire/dist/angularfire.min.js"></script>
-<script src="bower_components/x2js/xml2json.min.js"></script>
-<script src="bower_components/angular-xml/angular-xml.min.js"></script>
-
+<!-- css -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="./bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css">
 <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css"></script>
-
-
-<!-- css -->
 <link rel="stylesheet" type="text/css" href="css/main.css"></script>
-
-<!-- Application -->
-<script src="app/app.js"></script>
-<script src="app/home_page/HomePageController.js"></script>
-<script src="app/new_show_page/NewShowPageController.js"></script>
-<script src="app/new_episode_page/NewEpisodePageController.js"></script>
-<script src="app/user_page/UserPageController.js"></script>
-<script src="app/shared/PlayerController.js"></script>
-<script src="app/show_page/ShowPageController.js"></script>
-<script src="app/shared/LoginController.js"></script>
-<script src="app/shared/UserService.js"></script>
-<script src="app/shared/PlayerService.js"></script>
-<script src="app/shared/EpisodeService.js"></script>
-<script src="app/shared/ShowService.js"></script>
-<script src="app/shared/NavController.js"></script>
-
 
 </head>
 <body>
@@ -103,9 +73,35 @@
 </div>
 
 
+<!-- Libraries -->
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script src="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
+<script src="bower_components/firebase/firebase.js"></script>
+<script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+<script src="bower_components/x2js/xml2json.min.js"></script>
+<script src="bower_components/angular-xml/angular-xml.min.js"></script>
 
-    
-  <script>
+<!-- Application -->
+<script src="app/app.js"></script>
+<script src="app/home_page/HomePageController.js"></script>
+<script src="app/new_show_page/NewShowPageController.js"></script>
+<script src="app/new_episode_page/NewEpisodePageController.js"></script>
+<script src="app/user_page/UserPageController.js"></script>
+<script src="app/show_page/ShowPageController.js"></script>
+
+<script src="app/shared/controllers/PlayerController.js"></script>
+<script src="app/shared/controllers/LoginController.js"></script>
+
+<script src="app/shared/services/UserService.js"></script>
+<script src="app/shared/services/PlayerService.js"></script>
+<script src="app/shared/services/EpisodeService.js"></script>
+<script src="app/shared/services/ShowService.js"></script>
+<script src="app/shared/controllers/NavController.js"></script>   
+<script>
   // Initialize the Firebase SDK
   var config = {
     apiKey: "AIzaSyDjOwqslojjkjrR4vH3EX0cdGrPxHahMNs",
