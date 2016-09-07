@@ -84,19 +84,17 @@ angular
                         title: title,
                         description: description,
                         imageSrc: snapshot.downloadURL,
-                        owner: user.$id
+                        owner: user.$id,
+                        public: true
                     }
 
                     showKey = database.ref().child('shows').push(show).key;
-
+                    key = {key: showKey, episodes: []};
                     if(user.shows != undefined){
-                        user.shows.push(showKey);
+                        user.shows.push(key);
                     }else{
-                        user.shows = [showKey];
+                        user.shows = [key];
                     }
-                    console.log(show);
-                    console.log(showKey)
-                    console.log(user)
 
                     user.$save().then(function() {
                         console.log('Show Added!');
@@ -110,42 +108,42 @@ angular
         });
     }
 
-    UserService.addEpisode = function(show, title, description, file){
-        fileRef = ref.child(file['lfFileName']);
-        uploadTask = fileRef.put(file['lfFile'])
+    // UserService.addEpisode = function(show, title, description, file){
+    //     fileRef = ref.child(file['lfFileName']);
+    //     uploadTask = fileRef.put(file['lfFile'])
 
-        uploadTask.then(function(snapshot){
+    //     uploadTask.then(function(snapshot){
             
-            user = $firebaseObject(database.ref('users/' + UserService.user.$id));
-            user.$loaded().then(function(user){
+    //         user = $firebaseObject(database.ref('users/' + UserService.user.$id));
+    //         user.$loaded().then(function(user){
 
-              episode = {                 
-                title: title,
-                description: description,
-                path : snapshot.downloadURL
-              }
+    //           episode = {                 
+    //             title: title,
+    //             description: description,
+    //             path : snapshot.downloadURL
+    //           }
 
-              for(i = 0; i < user.shows.length; i++){
-                if(user.shows[i].title == show){
-                  if(user.shows.episodes == undefined){
-                    user.shows[i].episodes = [episode];
-                  } else {
-                    user.shows[i].push(episode);
-                  }
-                }
-              };
-              user.$save().then(function() {
-                  console.log('Episode Added!');
-              }).catch(function(error) {
-                  console.log('Error!');
-              });
-          });
-    });
+    //           for(i = 0; i < user.shows.length; i++){
+    //             if(user.shows[i].title == show){
+    //               if(user.shows.episodes == undefined){
+    //                 user.shows[i].episodes = [episode];
+    //               } else {
+    //                 user.shows[i].push(episode);
+    //               }
+    //             }
+    //           };
+    //           user.$save().then(function() {
+    //               console.log('Episode Added!');
+    //           }).catch(function(error) {
+    //               console.log('Error!');
+    //           });
+    //       });
+    // });
 
-        uploadTask.on("state_changed", function progress(snapshot){
-            console.log(Math.round(snapshot.bytesTransferred/snapshot.totalBytes*100) + "%") // progress of upload
-        });
-    }
+    //     uploadTask.on("state_changed", function progress(snapshot){
+    //         console.log(Math.round(snapshot.bytesTransferred/snapshot.totalBytes*100) + "%") // progress of upload
+    //     });
+    // }
     
     return UserService;
 });

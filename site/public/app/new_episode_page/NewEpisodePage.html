@@ -6,11 +6,11 @@
         md-search-text="searchText"
         md-selected-item-change="selectedItemChange(item)"
         md-items="item in querySearch(searchText)"
-        md-item-text="item"
+        md-item-text="item.title"
         md-min-length="0"
         placeholder="Select the show you want to upload to.">
       <md-item-template>
-        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.title}}</span>
       </md-item-template>
       <md-not-found>
         None of your shows match "{{searchText}}".

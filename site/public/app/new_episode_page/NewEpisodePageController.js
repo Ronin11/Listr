@@ -2,25 +2,31 @@ angular
     .module('Podcastio')
     .controller('NewEpisodePageCtrl', function(
       $scope, $log, $window,
-      ShowService, UserService) {
+      EpisodeService, ShowService, UserService) {
 
     UserService.getUser(function(user){
       $scope.user = user;
       ShowService.getShows(user, function(shows){
-        $scope.shows = shows.map(x => x.title);
-        console.log($scope.shows);
+          $scope.shows = shows;
       });
     });
 
     $scope.submit = function(){
-      UserService.addEpisode($scope.selectedItem, $scope.title, $scope.description, $scope.files[0])
+      info = {
+        user: $scope.user,
+        show: $scope.selectedItem,
+        title: $scope.title,
+        description: $scope.description, 
+        file: $scope.files[0]
+      }
+      EpisodeService.addEpisode(info);
     };
 
     //var self = this;
 
     $scope.querySearch   = querySearch;
-    $scope.selectedItemChange = selectedItemChange;
-    $scope.searchTextChange   = searchTextChange;
+    //$scope.selectedItemChange = selectedItemChange;
+    //$scope.searchTextChange   = searchTextChange;
     $scope.selectedItem;
 
     // ******************************
@@ -35,12 +41,12 @@ angular
           deferred;
         return results;
     }
-    function searchTextChange(text) {
-      $log.info('Text changed to ' + text);
-    }
-    function selectedItemChange(item) {
-      $log.info('Item changed to ' + JSON.stringify(item));
-    }
+    // function searchTextChange(text) {
+    //   $log.info('Text changed to ' + text);
+    // }
+    // function selectedItemChange(item) {
+    //   $log.info('Item changed to ' + JSON.stringify(item));
+    // }
     /**
      * Create filter function for a query string
      */
