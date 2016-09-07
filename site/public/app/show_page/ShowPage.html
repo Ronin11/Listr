@@ -1,0 +1,23 @@
+<div class="content">
+    <div ng-if="loaded" class="episode-container">
+        <div flex layout="row">
+            <div layout="column">
+                <img class="episode-image" ng-src="{{episodeData.imgUrl}}" alt="Description" />
+            </div>
+            <div flex layout="column">
+                <div class = "show-display-meta">
+                    {{episodeData.title}}
+                </div>
+            </div>
+        </div>
+        <hr class="episode-display-break">
+        <div flex layout="column">
+            <div ng-repeat="episode in episodeData.episodes">
+                <div class="show-item-list" ng-click = "changeSong(episode.enclosure._url)">
+                    <i class="material-icons md-48 episode">play_arrow</i>
+                    {{episode.title}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

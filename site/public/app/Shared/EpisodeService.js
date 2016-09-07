@@ -14,6 +14,7 @@ angular.module('Podcastio').factory('EpisodeService', function($http, x2js){
             data.title = feed.title
             data.summary = feed.summary
             data.imgUrl = feed.image[0].url
+            console.log(data.imgUrl);
             for(x = 0; x < feed.item.length; x++){
                 data.episodes.push(feed.item[x]);
             }
@@ -22,7 +23,7 @@ angular.module('Podcastio').factory('EpisodeService', function($http, x2js){
         // this callback will be called asynchronously
         // when the response is available
         }, function errorCallback(response) {
-            console.log(resposne);
+            console.log(response);
         // called asynchronously if an error occurs
         // or server returns response with an error status.
         });

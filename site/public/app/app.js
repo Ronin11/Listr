@@ -40,5 +40,9 @@ app.config(['$routeProvider', '$mdThemingProvider', '$httpProvider',
       templateUrl: 'app/user_page/UserPage.html',
       controller: 'UserPageCtrl'
     }).
+    when('/show/:show', {
+      templateUrl: 'app/show_page/ShowPage.html',
+      controller: 'ShowPageCtrl'
+    }).
     otherwise('/home');
 }]);
