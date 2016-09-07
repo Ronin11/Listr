@@ -23,12 +23,20 @@ angular.module('Podcastio').controller('PlayerCtrl', function($http, $scope, $fi
         duration -= minutes*60;
       }
       seconds = Math.floor(duration)
+      if(seconds < 10){
+        seconds = "0"+seconds;
+      }
+      if(minutes < 10){
+        minutes = "0"+minutes;
+      }
       if(hours != 0){
+        if(hours < 10){
+          hours = "0"+hours;
+        }
         PlayerCtrl.duration = hours+":"+minutes+":"+seconds
       }else{
         PlayerCtrl.duration = minutes+":"+seconds
       }
-       
       $scope.$apply()
     }
 
