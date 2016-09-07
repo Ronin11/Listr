@@ -1,10 +1,17 @@
 angular
     .module('Podcastio')
     .controller('NewShowPageCtrl', function($scope,
-                            UserService) {
+        ShowService, UserService) {
 
     $scope.createShow = function(){
-        UserService.addShow($scope.title, $scope.description, $scope.files[0]);
+        UserService.getUser(function(user){
+            info = {
+                title: $scope.title,
+                description: $scope.description,
+                file: $scope.files[0]
+            }
+            ShowService.addShow(info, user);
+        });
     }
 
 });
