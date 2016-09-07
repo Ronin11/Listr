@@ -32,7 +32,7 @@ angular.module('Podcastio').controller('PlayerCtrl', function($http, $scope, $fi
       $scope.$apply()
     }
 
-    audioElement.onprogress = function(event){
+    audioElement.ontimeupdate = function(event){
       PlayerCtrl.progressValue = audioElement.currentTime/audioElement.duration*100;
       console.log(PlayerCtrl.progressValue)
       currentTime = audioElement.currentTime
@@ -48,7 +48,16 @@ angular.module('Podcastio').controller('PlayerCtrl', function($http, $scope, $fi
         currentTime -= minutes*60;
       }
       seconds = Math.floor(currentTime)
+      if(seconds < 10){
+        seconds = "0"+seconds;
+      }
+      if(minutes < 10){
+        minutes = "0"+minutes;
+      }
       if(hours != 0){
+        if(hours < 10){
+          hours = "0"+hours;
+        }
         PlayerCtrl.currentTime = hours+":"+minutes+":"+seconds
       }else{
         PlayerCtrl.currentTime = minutes+":"+seconds
