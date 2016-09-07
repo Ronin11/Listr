@@ -31,5 +31,8 @@
     "material-design-icons": "^2.2.3",
     "lf-ng-md-file-input": "^1.4.8",
     "angular-xml": "^2.2.1"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
   }
 }

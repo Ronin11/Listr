@@ -1,4 +1,7 @@
-angular.module('Podcastio').controller('HomePageCtrl', function($scope, $firebaseAuth, PlayerService, EpisodeService) {
+angular
+    .module('Podcastio')
+    .controller('HomePageCtrl', function($scope, $firebaseAuth, 
+        ShowService, PlayerService, EpisodeService) {
 
     HomeController = this;
 
@@ -6,14 +9,12 @@ angular.module('Podcastio').controller('HomePageCtrl', function($scope, $firebas
     var episodes = firebase.database().ref('tal/episodes/');
     $scope.episodeData = {}
 
-    $scope.showSelected = function(){
-            // http://feed.thisamericanlife.org/talpodcast
-            // EpisodeService.getEpisodes('http://sawbones.libsyn.com/rss', function(data){
-            console.log("Selected");
-            EpisodeService.getEpisodes('http://bunkerbuddies.libsyn.com/rss', function(data){
-            $scope.episodeData = data;
-            console.log($scope.episodeData.episodes);
-            console.log("GotData");
+    $scope.showSelected = function(EpisodeRss){
+            console.log(EpisodeRss);
+            EpisodeService.getEpisodes(EpisodeRss, function(data){
+                $scope.episodeData = data;
+                console.log($scope.episodeData.episodes);
+                console.log("GotData");
         });
     }
 
@@ -27,6 +28,8 @@ angular.module('Podcastio').controller('HomePageCtrl', function($scope, $firebas
         $scope.episodeList = snapshot.val();   
     });
 
-
+    ShowService.getAllShows(function(shows){
+        console.log(shows);
+    });
 
 });

@@ -13,10 +13,10 @@
 <script src="bower_components/x2js/xml2json.min.js"></script>
 <script src="bower_components/angular-xml/angular-xml.min.js"></script>
 
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="./bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css">
 <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="css/main.css"></script>
@@ -24,54 +24,87 @@
 <!-- Application -->
 <script src="app/app.js"></script>
 <script src="app/home_page/HomePageController.js"></script>
-<script src="app/login_page/LoginPageController.js"></script>
-<script src="app/upload_page/UploadPageController.js"></script>
+<script src="app/new_show_page/NewShowPageController.js"></script>
+<script src="app/new_episode_page/NewEpisodePageController.js"></script>
+<script src="app/user_page/UserPageController.js"></script>
 <script src="app/Shared/PlayerController.js"></script>
+<script src="app/show_page/ShowPageController.js"></script>
+<script src="app/Shared/LoginPageController.js"></script>
 <script src="app/Shared/UserService.js"></script>
 <script src="app/Shared/PlayerService.js"></script>
 <script src="app/Shared/EpisodeService.js"></script>
+<script src="app/Shared/ShowService.js"></script>
+<script src="app/Shared/NavController.js"></script>
 
 
 </head>
 <body>
-    <div class = "header" laytou="row">
-        Podcastio
-    </div>
+<div layout="row" ng-controller="NavCtrl">
+    <md-sidenav md-component-id="left" class="md-sidenav-left">
+        <div class="menu-item">
+            <a href="#/player">Listen</a>
+        </div>
+        <div class="menu-item">
+            <a href="#/newEpisode">New Episode</a>
+        </div>
+        <div class="menu-item">
+            <a href="#/newShow">New Show</a>
+        </div>
+    </md-sidenav>
+    <div layout="column" flex="100">
+        <div class = "header" layout="row" ng-controller="LoginPageCtrl">
+            <md-button ng-click="openLeftMenu()">
+            <i class="material-icons md-48">menu</i>
+            </md-button>
+            <md-button href="#/home"> Podcastio </md-button>
+            <span flex></span>
+            <md-input-container>
+                <label>Search..</label>
+                <input ng-model="search">
+            </md-input-container>
+            <md-button ng-if="!isLoggedIn()" ng-click="login()"> login </md-button>
+            <md-button ng-if="isLoggedIn()" href="#/user"> User </md-button>
+        </div>
         <ng-view></ng-view>
-  
-  <div class = "player" layout="column" ng-controller="PlayerCtrl as ctrl">
-      <md-progress-linear class="progress-bar" md-mode="determinate" value="{{ctrl.progressValue}}"></md-progress-linear>
-      <div class="player-wrapper" layout="row">
-      <div class="player-left-wrapper" layout="column" flex="33">
-      </div>
-      <div class="player-center-wrapper" layout="column" flex="33">
-          <div class="player-controls" layout="row">
-          <div layout="column" flex="33">
-              <span class="back-button octicon octicon-triangle-left"></span>
-          </div>
-          <div layout="column" flex="33">
-              <div class="player-controls" layout="row">
-              <div layout="column" layout-align="center center" flex="33" ng-click="ctrl.skipPrev()">
-                  <i class="material-icons md-48">skip_previous</i>
-              </div>
-              <div layout="column" layout-align="center center" flex="33" ng-click="ctrl.togglePlay()">
-                      <i ng-if="!ctrl.playing" class="material-icons md-48">play_arrow</i>
-                      <i ng-if="ctrl.playing" class="material-icons md-48">pause</i>
-              </div>
-              <div layout="column" layout-align="center center" flex="33" ng-click="ctrl.skipNext()">
-                  <i class="material-icons md-48">skip_next</i>
-              </div>
-              </div>
-          </div>
-          <div layout="column" flex="33">
-          </div>
-          </div>
-      </div>
-      <div class="player-right-wrapper" layout="column" flex="33">
-        {{ctrl.currentTime}}/{{ctrl.duration}}
-      </div>
-      </div>
-  </div>
+        <div class = "player" layout="column" ng-controller="PlayerCtrl as ctrl">
+            <md-progress-linear class="progress-bar" md-mode="determinate" value="{{ctrl.progressValue}}"></md-progress-linear>
+            <div class="player-wrapper" layout="row">
+            <div class="player-left-wrapper" layout="column" flex="33">
+            </div>
+            <div class="player-center-wrapper" layout="column" flex="33">
+                <div class="player-controls" layout="row">
+                <div layout="column" flex="33">
+                    <span class="back-button octicon octicon-triangle-left"></span>
+                </div>
+                <div layout="column" flex="33">
+                    <div class="player-controls" layout="row">
+                    <div layout="column" layout-align="center center" flex="33" ng-click="ctrl.skipPrev()">
+                        <i class="material-icons md-48">skip_previous</i>
+                    </div>
+                    <div layout="column" layout-align="center center" flex="33" ng-click="ctrl.togglePlay()">
+                            <i ng-if="!ctrl.playing" class="material-icons md-48">play_arrow</i>
+                            <i ng-if="ctrl.playing" class="material-icons md-48">pause</i>
+                    </div>
+                    <div layout="column" layout-align="center center" flex="33" ng-click="ctrl.skipNext()">
+                        <i class="material-icons md-48">skip_next</i>
+                    </div>
+                    </div>
+                </div>
+                <div layout="column" flex="33">
+                </div>
+                </div>
+            </div>
+            <div class="player-right-wrapper" layout="column" flex="33">
+                {{ctrl.currentTime}}/{{ctrl.duration}}
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    
   <script>
   // Initialize the Firebase SDK
   var config = {
