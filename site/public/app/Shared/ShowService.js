@@ -13,6 +13,10 @@ angular
             callback(user.shows);
         });
     }
+
+    ShowService.getAllShows = function(callback){
+        callback(database.ref().child('shows'));
+    }
     
     return ShowService;
 

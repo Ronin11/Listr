@@ -1,6 +1,7 @@
 angular
     .module('Podcastio')
-    .controller('HomePageCtrl', function($scope, $firebaseAuth, PlayerService, EpisodeService) {
+    .controller('HomePageCtrl', function($scope, $firebaseAuth, 
+        ShowService, PlayerService, EpisodeService) {
 
     HomeController = this;
 
@@ -29,6 +30,8 @@ angular
         $scope.episodeList = snapshot.val();   
     });
 
-
+    ShowService.getAllShows(function(shows){
+        console.log(shows);
+    });
 
 });

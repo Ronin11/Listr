@@ -79,24 +79,31 @@ angular
                 
                 user = $firebaseObject(database.ref('users/' + UserService.user.$id));
                 user.$loaded().then(function(user){
+                        
+                    show = {
+                        title: title,
+                        description: description,
+                        imageSrc: snapshot.downloadURL,
+                        owner: user.$id
+                    }
 
-                show = {
-                    title: title,
-                    description: description,
-                    imageSrc: snapshot.downloadURL
-                }
+                    showKey = database.ref().child('shows').push(show).key;
 
-                if(user.shows != undefined){
-                    user.shows.push(show);
-                }else{
-                    user.shows = [show];
-                }
-                user.$save().then(function() {
-                    console.log('Show Added!');
-                }).catch(function(error) {
-                    console.log('Error!');
+                    if(user.shows != undefined){
+                        user.shows.push(showKey);
+                    }else{
+                        user.shows = [showKey];
+                    }
+                    console.log(show);
+                    console.log(showKey)
+                    console.log(user)
+
+                    user.$save().then(function() {
+                        console.log('Show Added!');
+                    }).catch(function(error) {
+                        console.log('Error!');
+                    });
                 });
-            });
         });
         uploadTask.on("state_changed", function progress(snapshot){
             console.log(Math.round(snapshot.bytesTransferred/snapshot.totalBytes*100) + "%") // progress of upload
