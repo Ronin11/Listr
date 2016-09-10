@@ -11,37 +11,49 @@ angular
         var auth = $firebaseAuth();
         auth.$signInWithPopup("google").then(function(firebaseUser){
                 temp = firebaseUser;
-                getUser(temp.user.uid, callback);
+                callback(temp.user.uid);
         }).catch(function(error){
                 console.log("Authentication failed:", error);
         })
     }
 
-    function getUser(id, callback){
-        user = $firebaseObject(database.ref('users/' + id));
-        user.$loaded().then(function(user){
-            UserService.user = user
-
-            // THIS IS FOR TESTING AND DEV ONLY!!!
-            
-            if(UserService.user != undefined){
-                callback(UserService.user);
-            }else{
-                createUser(id, "USERNAME", callback);
+    function getUser(gid, callback){
+        database.ref().child('conv').child(gid).once("value", function(snapshot){
+            uid = snapshot.val();
+            try{
+                database.ref().child('users').child(uid).once("value", function (snapshot){
+                    UserService.user = snapshot.val();
+                    callback(UserService.user);
+                });
+            } catch(error){
+                callback(null); 
             }
         });
     }
 
 
     function createUser(id, username, callback){
-        user = $firebaseObject(database.ref('users/' + id));
-        user.$loaded().then(function(user){
-            user.$value = {
-                uid: id,
-                name: username
-            }
-            UserService.user = user;
-            callback(UserService.user);
+        userKey = database.ref().child('users').push().key;
+        conv = {
+            uid: userKey
+        }
+        database.ref().child('conv').child(id).push();
+        convUpdate = {}
+        convUpdate['/conv/' + id] = userKey;
+        database.ref().update(convUpdate);
+
+        user = {
+            //gid: id,
+            uid: userKey,
+            username: username
+        }
+        update = {};
+        update['/users/' + userKey] = user;
+        database.ref().update(update).then(function(){
+            database.ref().child('users').child(userKey).once("value", function(snapshot){
+                UserService.user = snapshot.val();
+                callback(UserService.user);
+            });
         });
     }
     
@@ -55,11 +67,20 @@ angular
 
     UserService.getUser = function(callback){
         if(UserService.user){
-            console.log(UserService.user);
             callback(UserService.user);
         }
         else{
-            loginPrompt(callback);
+            loginPrompt(function(uid){
+                getUser(uid, function(user){
+                    if(user == null){
+                        createUser(uid, "Ronin", function(user){
+                            callback(user);
+                        });
+                    } else {
+                        callback(user);
+                    }
+                });
+            });
         }
     }
 
