@@ -13,13 +13,12 @@ angular
 
     $scope.submit = function(){
       info = {
-        user: $scope.user,
         show: $scope.selectedItem,
         title: $scope.title,
         description: $scope.description, 
         file: $scope.files[0]
       }
-      EpisodeService.addEpisode(info);
+      EpisodeService.addEpisode(info, $scope.user);
     };
 
     //var self = this;

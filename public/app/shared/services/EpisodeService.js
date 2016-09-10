@@ -34,19 +34,19 @@ angular.module('Podcastio').factory('EpisodeService', function(
         });
     }
 
-    EpisodeService.addEpisode = function(info, callback){
+    EpisodeService.addEpisode = function(info, user, callback){
         fileRef = ref.child(info.file['lfFileName']);
         uploadTask = fileRef.put(info.file['lfFile'])
 
-        uploadTask.then(function(snapshot){
-            user = $firebaseObject(database.ref('users/' + user.$id));
-            user.$loaded().then(function(user){
+        uploadTask.then(function(image){
+           database.ref().child('users').child(user.uid).once("value", function(snapshot){
+                user = snapshot.val();
                 episode = {
                     title: info.title,
                     description: info.description,
                     show: info.show.key,
-                    owner: user.$id,
-                    src: snapshot.downloadURL
+                    owner: user.uid,
+                    src: image.downloadURL
                 }
                 episodeKey = database.ref().child('shows').child(info.show.key).push(episode).key;
 
@@ -59,11 +59,7 @@ angular.module('Podcastio').factory('EpisodeService', function(
                         }
                     }
                 }
-                user.$save().then(function() {
-                    console.log('Show Added!');
-                }).catch(function(error) {
-                    console.log('Error!');
-                });
+                database.ref().child('users').child(user.uid).set(user);
             });
         });
         uploadTask.on("state_changed", function progress(snapshot){
@@ -71,8 +67,6 @@ angular.module('Podcastio').factory('EpisodeService', function(
         });
     }
 
-    
-    
     return EpisodeService;
 
 });

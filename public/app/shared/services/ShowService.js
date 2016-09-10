@@ -35,16 +35,15 @@ angular
         fileRef = ref.child(info.file['lfFileName']);
         uploadTask = fileRef.put(info.file['lfFile'])
 
-        uploadTask.then(function(snapshot){
+        uploadTask.then(function(image){
             
-            user = $firebaseObject(database.ref('users/' + user.$id));
-            user.$loaded().then(function(user){
-                    
+            database.ref().child('users').child(user.uid).once("value", function(snapshot){
+                user = snapshot.val();
                 show = {
                     title: info.title,
                     description: info.description,
-                    imageSrc: snapshot.downloadURL,
-                    owner: user.$id,
+                    imageSrc: image.downloadURL,
+                    owner: user.uid,
                     public: true
                 }
 
@@ -55,12 +54,7 @@ angular
                 }else{
                     user.shows = [key];
                 }
-
-                user.$save().then(function() {
-                    console.log('Show Added!');
-                }).catch(function(error) {
-                    console.log('Error!');
-                });
+                database.ref().child('users').child(user.uid).set(user);
             });
         });
         uploadTask.on("state_changed", function progress(snapshot){
