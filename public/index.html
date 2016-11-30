@@ -26,7 +26,7 @@
             <md-button ng-click="openLeftMenu()">
             <i class="material-icons md-48">menu</i>
             </md-button>
-            <md-button href="#/home"> Podcastio </md-button>
+            <md-button href="#/home"> Listr </md-button>
             <span flex></span>
             <md-input-container>
                 <label>Search..</label>
@@ -36,39 +36,6 @@
             <md-button ng-if="isLoggedIn()" href="#/user"> User </md-button>
         </div>
         <ng-view></ng-view>
-        <div class = "player" layout="column" ng-controller="PlayerCtrl as ctrl">
-            <md-progress-linear class="progress-bar" md-mode="determinate" value="{{ctrl.progressValue}}"></md-progress-linear>
-            <div class="player-wrapper" layout="row">
-            <div class="player-left-wrapper" layout="column" flex="33">
-            </div>
-            <div class="player-center-wrapper" layout="column" flex="33">
-                <div class="player-controls" layout="row">
-                <div layout="column" flex="33">
-                    <span class="back-button octicon octicon-triangle-left"></span>
-                </div>
-                <div layout="column" flex="33">
-                    <div class="player-controls" layout="row">
-                    <div layout="column" layout-align="center center" flex="33" ng-click="ctrl.skipPrev()">
-                        <i class="material-icons md-48">skip_previous</i>
-                    </div>
-                    <div layout="column" layout-align="center center" flex="33" ng-click="ctrl.togglePlay()">
-                            <i ng-if="!ctrl.playing" class="material-icons md-48">play_arrow</i>
-                            <i ng-if="ctrl.playing" class="material-icons md-48">pause</i>
-                    </div>
-                    <div layout="column" layout-align="center center" flex="33" ng-click="ctrl.skipNext()">
-                        <i class="material-icons md-48">skip_next</i>
-                    </div>
-                    </div>
-                </div>
-                <div layout="column" flex="33">
-                </div>
-                </div>
-            </div>
-            <div class="player-right-wrapper" layout="column" flex="33">
-                {{ctrl.currentTime}}/{{ctrl.duration}}
-            </div>
-            </div>
-        </div>
     </div>
 </div>
 
