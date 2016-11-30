@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Podcastio">
+<html lang="en" ng-app="Listr">
 <head>
 <!-- css -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -28,7 +28,7 @@
             </md-button>
             <md-button href="#/home"> Listr </md-button>
             <span flex></span>
-            <md-input-container>
+            <md-input-container ng-if="isLoggedIn()">
                 <label>Search..</label>
                 <input ng-model="search">
             </md-input-container>
@@ -55,19 +55,13 @@
 <!-- Application -->
 <script src="app/app.js"></script>
 <script src="app/home_page/HomePageController.js"></script>
-<script src="app/new_show_page/NewShowPageController.js"></script>
-<script src="app/new_episode_page/NewEpisodePageController.js"></script>
 <script src="app/user_page/UserPageController.js"></script>
-<script src="app/show_page/ShowPageController.js"></script>
-
-<script src="app/shared/controllers/PlayerController.js"></script>
 <script src="app/shared/controllers/LoginController.js"></script>
 
+<script src="app/shared/controllers/NavController.js"></script>  
 <script src="app/shared/services/UserService.js"></script>
-<script src="app/shared/services/PlayerService.js"></script>
-<script src="app/shared/services/EpisodeService.js"></script>
-<script src="app/shared/services/ShowService.js"></script>
-<script src="app/shared/controllers/NavController.js"></script>   
+<script src="app/shared/services/ListService.js"></script>
+ 
 <script>
   // Initialize the Firebase SDK
   var config = {

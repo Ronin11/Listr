@@ -1,4 +1,4 @@
-app = angular.module('Podcastio', [
+app = angular.module('Listr', [
   'ngMaterial',
   'lfNgMdFileInput',
   'ngRoute',
@@ -24,25 +24,17 @@ app.config(['$routeProvider', '$mdThemingProvider', '$httpProvider',
       templateUrl: 'app/home_page/HomePage.html',
       controller: 'HomePageCtrl'
     }).
-    when('/player', {
-      templateUrl: 'app/player_page/PlayerPage.html',
-      controller: 'PlayerPageCtrl'
-    }).
-    when('/newEpisode', {
-      templateUrl: 'app/new_episode_page/NewEpisodePage.html',
-      controller: 'NewEpisodePageCtrl'
-    }).
-    when('/newShow', {
-      templateUrl: 'app/new_show_page/NewShowPage.html',
-      controller: 'NewShowPageCtrl'
+    when('/about', {
+      templateUrl: 'app/about_page/AboutPage.html',
+      controller: 'AboutPageCtrl'
     }).
     when('/user', {
       templateUrl: 'app/user_page/UserPage.html',
       controller: 'UserPageCtrl'
     }).
-    when('/show/:show', {
-      templateUrl: 'app/show_page/ShowPage.html',
-      controller: 'ShowPageCtrl'
+    when('/list/:list', {
+      templateUrl: 'app/list_page/ListPage.html',
+      controller: 'ListPageCtrl'
     }).
     otherwise('/home');
 }]);

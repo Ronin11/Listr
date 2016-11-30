@@ -1,8 +1,8 @@
 angular
-    .module('Podcastio')
+    .module('Listr')
     .controller('UserPageCtrl', function(
         $scope,
-        UserService, PlayerService) {
+        UserService) {
 
     UserService.getUser(function(user){
       $scope.user = user;
@@ -10,7 +10,6 @@ angular
 
     $scope.playEpisode = function(episode) {
         console.log(episode);
-        PlayerService.podcastPath = episode.path;
     };
 
 });

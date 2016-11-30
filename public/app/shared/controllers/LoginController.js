@@ -1,5 +1,5 @@
 angular
-    .module('Podcastio')
+    .module('Listr')
     .controller('LoginPageCtrl', function($scope, UserService) {
 
     LoginPageController = this;

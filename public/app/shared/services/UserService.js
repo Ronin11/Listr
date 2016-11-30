@@ -1,5 +1,5 @@
 angular
-    .module('Podcastio')
+    .module('Listr')
     .factory('UserService', function(
         $firebaseAuth, $firebaseArray, $firebaseObject){
     var UserService = {};
