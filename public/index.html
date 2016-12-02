@@ -12,17 +12,17 @@
 <div layout="row" ng-controller="NavCtrl">
     <md-sidenav md-component-id="left" class="md-sidenav-left">
         <div class="menu-item">
-            <a href="#/player">Listen</a>
+            <a href="#/about">about</a>
         </div>
         <div class="menu-item">
-            <a href="#/newEpisode">New Episode</a>
+            <a href="#/user">user</a>
         </div>
         <div class="menu-item">
-            <a href="#/newShow">New Show</a>
+            <a href="#/list">list</a>
         </div>
     </md-sidenav>
     <div layout="column" flex="100">
-        <div class = "header" layout="row" ng-controller="LoginPageCtrl">
+        <md-toolbar class="header" layout="row" ng-controller="LoginPageCtrl">
             <md-button ng-click="openLeftMenu()">
             <i class="material-icons md-48">menu</i>
             </md-button>
@@ -34,7 +34,7 @@
             </md-input-container>
             <md-button ng-if="!isLoggedIn()" ng-click="login()"> login </md-button>
             <md-button ng-if="isLoggedIn()" href="#/user"> User </md-button>
-        </div>
+        </md-toolbar>
         <ng-view></ng-view>
     </div>
 </div>
@@ -54,6 +54,7 @@
 
 <!-- Application -->
 <script src="app/app.js"></script>
+<script src="app/util.js"></script>
 <script src="app/home_page/HomePageController.js"></script>
 <script src="app/user_page/UserPageController.js"></script>
 <script src="app/shared/controllers/LoginController.js"></script>
@@ -62,15 +63,19 @@
 <script src="app/shared/services/UserService.js"></script>
 <script src="app/shared/services/ListService.js"></script>
  
+
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
-  // Initialize the Firebase SDK
+  // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDjOwqslojjkjrR4vH3EX0cdGrPxHahMNs",
-    authDomain: "project-7481664624118991650.firebaseapp.com",
-    databaseURL: "https://project-7481664624118991650.firebaseio.com",
-    storageBucket: "project-7481664624118991650.appspot.com",
+    apiKey: "AIzaSyCRMoOznAue8J78Wgw272ppY-TGGe15cTg",
+    authDomain: "listr-11f5b.firebaseapp.com",
+    databaseURL: "https://listr-11f5b.firebaseio.com",
+    storageBucket: "listr-11f5b.appspot.com",
+    messagingSenderId: "780234247056"
   };
   firebase.initializeApp(config);
 </script>
+
 </body>
 </html>

@@ -1,0 +1,28 @@
+<form name="loginForm" ng-controller="LoginCtrl" layout="column" class="loginBox md-whiteframe-z1">
+    <md-toolbar>
+        <h2 class="md-toolbar-tools"><span>Login</span></h2>
+    </md-toolbar>
+    <md-content layout="column" class="md-padding">
+        <md-input-container>
+            <label>Username or Email</label>
+            <input required type="username" name="username" ng-model="username"/>
+            <div ng-messages="loginForm.username.$error">
+                <div ng-message="required">Please enter your username or email.</div>
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Password</label>
+            <input required type="password" name="password" ng-model="password"/>
+            <div ng-messages="loginForm.password.$error">
+                <div ng-message="required">Please enter your password.</div>
+            </div>
+        </md-input-container>
+        <div layout="row" layout-align="center center" style="padding-top:20px;">
+            <md-button ng-if="!wait" type="submit" class="md-raised md-primary" ng-click="login()">Login</md-button>
+            <md-progress-circular ng-if="wait" md-mode="indeterminate"></md-progress-circular>
+            <div flex="flex"></div>
+            <md-button ng-click="forgotPassword()">Forgot Password</md-button>
+            <md-button ng-click="createAccount()">Create Account</md-button>
+        </div>
+    </md-content>
+</form>

@@ -16,8 +16,8 @@ app.config(['$routeProvider', '$mdThemingProvider', '$httpProvider',
     
     
     $mdThemingProvider.theme('default')
-      .primaryPalette('deep-purple')
-      .accentPalette('orange');
+      .primaryPalette('light-blue')
+      .accentPalette('red');
 
     $routeProvider.
     when('/home', {
@@ -32,9 +32,10 @@ app.config(['$routeProvider', '$mdThemingProvider', '$httpProvider',
       templateUrl: 'app/user_page/UserPage.html',
       controller: 'UserPageCtrl'
     }).
-    when('/list/:list', {
+    when('/list', {
       templateUrl: 'app/list_page/ListPage.html',
       controller: 'ListPageCtrl'
     }).
     otherwise('/home');
 }]);
+

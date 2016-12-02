@@ -3,6 +3,8 @@ angular
     .controller('HomePageCtrl', function($scope, $firebaseAuth, 
         ListService) {
 
+            
+        
     HomeController = this;
 
     // var database = firebase.database();
