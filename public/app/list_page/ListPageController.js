@@ -1,36 +1,16 @@
 angular
     .module('Listr')
-    .controller('ListPageCtrl', function($scope, $firebaseAuth, 
+    .controller('ListPageCtrl', function($scope, $route, $firebaseAuth, 
         ListService, UserService) {
 
     ListPageCtrl = this;
-    console.log(UserService.getUserList());
+    $scope.ctrl = ListPageCtrl;
+    ListPageCtrl.listId = $route.current.pathParams.listId;
+    ListPageCtrl.updateList = function(list){
+        ListPageCtrl.list = list;
+        $scope.$apply();
+    }
 
-    // var database = firebase.database();
-    // var episodes = firebase.database().ref('tal/episodes/');
-    // $scope.episodeData = {}
-
-    // $scope.showSelected = function(EpisodeRss){
-    //         console.log(EpisodeRss);
-    //         EpisodeService.getEpisodes(EpisodeRss, function(data){
-    //             $scope.episodeData = data;
-    //             console.log($scope.episodeData.episodes);
-    //             console.log("GotData");
-    //     });
-    // }
-
-    // $scope.changeSong = function(podcastPath){
-    //     console.log(podcastPath);
-    //     .podcastPath = podcastPath
-    //     console.log(podcastPath);
-    // }
-
-    // episodes.on('value', function(snapshot) {
-    //     $scope.episodeList = snapshot.val();   
-    // });
-
-    // ShowService.getAllShows(function(shows){
-    //     console.log(shows);
-    // });
+    ListService.getList(null, ListPageCtrl.listId, ListPageCtrl.updateList);
 
 });

@@ -15,26 +15,24 @@ angular.module('Listr').factory('ListService', function(
         listCollection.child(listId)
             .once("value", function(snapshot){
             list = snapshot.val();
-            if(user.uid == list.owner){
-                callback(list);
-            }else{
-                callback(null);
-            }
+            //Removing Security for dev
+            callback(list);
+            // if(user.uid == list.owner){
+            //     callback(list);
+            // }else{
+            //     callback(null);
+            // }
         });
     }
     
     ListService.addToList = function(user, listId, obj, callback){
         this.getList(user, listId, function(list){
-            if(list == null);
-            else{
-                list.pushContent(obj);
+            if(list == null){
+                callback(list);
             }
-
-            // else if(list.contents == null){
-            //     list.contents = [obj];
-            // }else{
-            //     list.contents.push(obj);
-            // }
+            else{
+                pushContent(list, obj);
+            }
             updates = {};
             updates['/lists/' + list.id] = list;
             database.update(updates).then(function(){
@@ -48,22 +46,13 @@ angular.module('Listr').factory('ListService', function(
         list = {
             parent: parentList.id,
             owner: user.uid,
-            id: id
+            id: id,
+            name: "Unnamed List"
         }
-        // if(parentList.contents == null){
-        //     parentList.contents = [{
-        //         id: id,
-        //         type: "List"
-        //     }];
-        // }else{
-        //     parentList.contents.push({
-        //         id: id,
-        //         type: "List"
-        //     })
-        // }
-        parentList.pushContent({
+        pushContent(parentList, {
                 id: id,
-                type: "List"
+                type: "List",
+                name: "Unnamed List"
             });
         updates = {};
         updates['/lists/' + id] = list;

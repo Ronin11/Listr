@@ -1,3 +1,21 @@
-<div class="content">
-    Stuff
-</div>
+<md-card class="content" ng-controller="ListPageCtrl">
+    <md-toolbar class="md-primary">
+        <h4>List Id - {{ ctrl.list.id }}</h4>
+        <!--<span flex></span>
+        <button md-button>Edit</button>-->
+    </md-toolbar>
+    <div ng-repeat="content in ctrl.list.contents">
+        <md-list-item ng-if="content.type == 'List'">
+            LIST:     {{ content.name }}
+        </md-list-item>
+        <md-list-item ng-if="content.type == 'Quantity'">
+            QUANTITY:     {{ content.amount }} {{ content.name }}
+         </md-list-item>
+        <md-list-item ng-if="content.type == 'Weight'">
+            WEIGHT:     {{ content.amount }} of {{ content.name }}
+        </md-list-item>
+    </div>
+    <md-list-item >
+        <md-button class="md-raised md-primary"> Add to List </md-button>
+    </md-list-item>
+</md-card>

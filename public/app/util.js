@@ -1,8 +1,8 @@
-Object.prototype.pushContent = function(element) {
-        if(this.contents == null){
-          this.contents = [element]
-        }
-        else{
-          this.contents.push(element);
-        }
-}; 
+function pushContent(obj, element){
+    if(obj.contents == null){
+        obj.contents = [element]
+    }
+    else{
+        obj.contents.push(element);
+    }
+}

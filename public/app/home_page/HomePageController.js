@@ -1,7 +1,7 @@
 angular
     .module('Listr')
     .controller('HomePageCtrl', function($scope, $firebaseAuth, 
-        ListService) {
+        UserService, ListService) {
 
             
         

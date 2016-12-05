@@ -32,9 +32,13 @@ app.config(['$routeProvider', '$mdThemingProvider', '$httpProvider',
       templateUrl: 'app/user_page/UserPage.html',
       controller: 'UserPageCtrl'
     }).
-    when('/list', {
+    when('/list/:listId', {
       templateUrl: 'app/list_page/ListPage.html',
       controller: 'ListPageCtrl'
+    }).
+    when('/contact', {
+      templateUrl: 'app/contact_page/ContactPage.html',
+      controller: 'ContactPageCtrl'
     }).
     otherwise('/home');
 }]);
