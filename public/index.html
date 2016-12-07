@@ -35,7 +35,7 @@
                 <label>Search..</label>
                 <input ng-model="search">
             </md-input-container>
-            <md-button ng-if="!UserService.isLoggedIn()" ng-click="login()"> login </md-button>
+            <md-button ng-if="!UserService.isLoggedIn()" ng-click="ctrl.login()"> login </md-button>
             <md-button ng-if="UserService.isLoggedIn()" href="#/user"> User </md-button>
         </md-toolbar>
         <ng-view></ng-view>

@@ -1,6 +1,6 @@
 angular
     .module('Listr')
-    .factory('UserService', function(
+    .factory('UserService', function($location,
         $firebaseAuth, $firebaseArray, $firebaseObject){
 
     var UserService = {};
@@ -32,9 +32,16 @@ angular
             }
         });
     }
-    function userSetup(id, callback){
-        username = "";
+    UserService.setUid = function(uid){
+        this.uid = uid;
+    }
+    UserService.setUsername = function(username){
+        this.username = username;
+    }
+    UserService.userSetup = function(username, callback){
         userKey = userCollection.push().key;
+        id = UserService.uid;
+        console.log(id);
         conv = {
             uid: userKey
         }
@@ -51,25 +58,32 @@ angular
         }
         database.child('/lists/' + user.masterlist).set({
             owner: user.uid,
-            id: user.uid
+            id: user.uid,
+            name: username + "'s Master List"
         });
         update = {};
         update['/users/' + userKey] = user;
         database.update(update).then(function(){
             userCollection.child(userKey).once("value", function(snapshot){
                 UserService.user = snapshot.val();
+                $location.path('/list/' + UserService.user.uid);
                 callback(UserService.user);
             });
         });
     }
 
     
-    UserService.isLoggedIn = function(){
-        if(UserService.user){
-            return true;
-        } else {
-            return false;
-        }
+    // UserService.isLoggedIn = function(){
+    //     if(UserService.user){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    UserService.loginWithGoogle = function(callback){
+        loginPrompt(function(uid){
+            callback(uid);
+        });
     }
 
     UserService.getUser = function(callback){
@@ -77,18 +91,19 @@ angular
             callback(UserService.user);
         }
         else{
-            loginPrompt(function(uid){
-                console.log(uid);
-                getUser(uid, function(user){
-                    if(user == null){
-                        userSetup(uid, function(user){
-                            callback(user);
-                        });
-                    } else {
-                        callback(user);
-                    }
-                });
-            });
+            callback(null);
+            // loginPrompt(function(uid){
+            //     console.log(uid);
+            //     getUser(uid, function(user){
+            //         if(user == null){
+            //             userSetup(uid, function(user){
+            //                 callback(user);
+            //             });
+            //         } else {
+            //             callback(user);
+            //         }
+            //     });
+            // });
         }
     }
 
